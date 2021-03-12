@@ -14,10 +14,14 @@ namespace CrmGraphQL
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            // http://localhost:5201/ui/playground
+
             services.AddDbContext<CrmDbContext>(context => context.UseInMemoryDatabase("DB"));
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddSingleton<RootQuery>();
+            services.AddSingleton<ClientQuery>();
+            services.AddSingleton<ProjectQuery>();
             services.AddSingleton<GraphSchema>();
             services
                 .AddGraphQL()

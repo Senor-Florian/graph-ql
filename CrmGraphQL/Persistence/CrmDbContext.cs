@@ -44,19 +44,22 @@ namespace CrmGraphQL.Persistence
                 {
                     Id = Guid.NewGuid(),
                     Name = "Projekt 1",
-                    ClientId = new Guid("BF3B5794-3472-4AE9-BE68-1EA5607C4FD0")
+                    ClientId = new Guid("BF3B5794-3472-4AE9-BE68-1EA5607C4FD0"),
+                    SalesRepresentativeId = new Guid("0643D282-7536-48B3-9760-5D25F5892D46") 
                 },
                 new Project
                 {
                     Id = Guid.NewGuid(),
                     Name = "Projekt 2",
-                    ClientId = new Guid("BF3B5794-3472-4AE9-BE68-1EA5607C4FD0")
+                    ClientId = new Guid("BF3B5794-3472-4AE9-BE68-1EA5607C4FD0"),
+                    SalesRepresentativeId = new Guid("B6400132-4488-4248-A10B-239FB9D20CE0")
                 },
                 new Project
                 {
                     Id = Guid.NewGuid(),
                     Name = "Projekt 3",
-                    ClientId = new Guid("BA3210F6-CE49-47CA-BC7C-8DF4624D96AE")
+                    ClientId = new Guid("BA3210F6-CE49-47CA-BC7C-8DF4624D96AE"),
+                    SalesRepresentativeId = new Guid("B6400132-4488-4248-A10B-239FB9D20CE0")
                 }
             );
 
@@ -66,6 +69,12 @@ namespace CrmGraphQL.Persistence
                     Id = new Guid("0643D282-7536-48B3-9760-5D25F5892D46"),
                     Name = "Béla", 
                     Email = "bela@pctrade.hu" 
+                },
+                new User
+                {
+                    Id = new Guid("B6400132-4488-4248-A10B-239FB9D20CE0"),
+                    Name = "Gábor",
+                    Email = "gabor@pctrade.hu"
                 }
             );
         }

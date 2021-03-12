@@ -13,7 +13,9 @@ namespace CrmGraphQL.Persistence
 
         public async Task<List<Project>> ListAsync()
         {
-            return await dbContext.Project.ToListAsync();
+            return await dbContext.Project
+                .Include(x => x.SalesRepresentative)
+                .ToListAsync();
         }
     }
 }
