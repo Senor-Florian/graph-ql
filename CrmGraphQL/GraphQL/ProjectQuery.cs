@@ -34,5 +34,19 @@ namespace CrmGraphQL.GraphQL
                     return data;
                 });
         }
+
+        public FieldType GetProjectById()
+        {
+            return FieldAsync<ProjectType>("project",
+                arguments: new QueryArguments(new List<QueryArgument> {
+                    new QueryArgument<GuidGraphType> { Name = "id" }
+                }),
+                resolve: async context =>
+                {
+                    var id = context.GetArgument<Guid>("id");
+                    var data = await _projectRepo.FindAsync(id);
+                    return data;
+                });
+        }
     }
 }

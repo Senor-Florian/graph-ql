@@ -19,9 +19,13 @@ namespace CrmGraphQL
             services.AddDbContext<CrmDbContext>(context => context.UseInMemoryDatabase("DB"));
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IModuleSettingRepository, ModuleSettingRepository>();
             services.AddSingleton<RootQuery>();
             services.AddSingleton<ClientQuery>();
             services.AddSingleton<ProjectQuery>();
+            services.AddSingleton<UserQuery>();
+            services.AddSingleton<ModuleSettingQuery>();
             services.AddSingleton<GraphSchema>();
             services
                 .AddGraphQL()

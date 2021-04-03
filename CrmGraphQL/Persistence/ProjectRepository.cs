@@ -1,5 +1,6 @@
 ﻿using CrmGraphQL.Domain;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,6 +17,13 @@ namespace CrmGraphQL.Persistence
             return await dbContext.Project
                 .Include(x => x.SalesRepresentative)
                 .ToListAsync();
+        }
+
+        public async Task<Project> FindAsync(Guid id)
+        {
+            return await dbContext.Project
+                .Include(x => x.SalesRepresentative)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }
