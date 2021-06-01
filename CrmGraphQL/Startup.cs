@@ -1,8 +1,10 @@
 using CrmGraphQL.Domain;
 using CrmGraphQL.GraphQL;
 using CrmGraphQL.Persistence;
+using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
+using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +23,13 @@ namespace CrmGraphQL
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IModuleSettingRepository, ModuleSettingRepository>();
-            services.AddSingleton<RootQuery>();
-            services.AddSingleton<ClientQuery>();
-            services.AddSingleton<ProjectQuery>();
-            services.AddSingleton<UserQuery>();
-            services.AddSingleton<ModuleSettingQuery>();
-            services.AddSingleton<GraphSchema>();
+            services.AddScoped<IDocumentExecuter, DocumentExecuter>();
+            services.AddScoped<RootQuery>();
+            services.AddScoped<ClientQuery>();
+            services.AddScoped<ProjectQuery>();
+            services.AddScoped<UserQuery>();
+            services.AddScoped<ModuleSettingQuery>();
+            services.AddScoped<ISchema, GraphSchema>();
             services
                 .AddGraphQL()
                 .AddSystemTextJson();
@@ -34,7 +37,7 @@ namespace CrmGraphQL
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseGraphQL<GraphSchema>();
+            app.UseGraphQL<ISchema>("/graphql");
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
 
             //if (env.IsDevelopment())
