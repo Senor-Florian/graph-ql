@@ -1,4 +1,4 @@
 ﻿site_name: graph-ql
 nav:
     - GraphQL: index.md
-    - Referenciák: /misc/references.md
+    - Referenciák: references.md
