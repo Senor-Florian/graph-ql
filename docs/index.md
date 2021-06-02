@@ -22,6 +22,6 @@ A következő képen egy query felépítése látható.
 
 ## Referenciák
 
-[Tovább a referenciákra](../misc/references.md)
+[Tovább a referenciákra](/misc/references.md)
 
 
