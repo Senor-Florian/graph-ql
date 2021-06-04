@@ -14,6 +14,33 @@ Alapja a schema, melyet kétféleképpen definiálhatunk: schema-first és code-
 * mutation
 * subscription
 	
+## Implementáció
+
+Itt egy random kódrészlet látható:
+
+```
+public FieldType GetClients()
+{
+	return FieldAsync<ListGraphType<ClientType>>("clients",
+		arguments: new QueryArguments(new List<QueryArgument>
+		{
+			new QueryArgument<IntGraphType> { Name = "year" }
+		}),
+		resolve: async context =>
+		{
+			var data = await _clientRepo.ListAsync();
+
+			var createdYear = context.GetArgument<int?>("year");
+			if (createdYear.HasValue)
+			{
+				return data.Where(x => x.Created.Year == createdYear);
+			}
+
+			return data;
+		});
+}
+```
+	
 ## Query
 
 A következő képen egy query felépítése látható.
